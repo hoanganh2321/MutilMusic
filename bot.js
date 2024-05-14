@@ -76,7 +76,7 @@ client.on("messageCreate", async (message) => {
             })
                 .setDescription(`**${track.info.title} **đã được xếp hàng và sẵn sàng để chơi!`)
                 .setColor('#14bdff')
-                .setFooter({ text: 'Use queue command for more Information' });
+                .setFooter({ text: 'Make by Kaioshin | discord.gg/XBHZUwqAzK' });
             message.reply({ embeds: [embed] });
 
             if (!player.playing && !player.paused) return player.play();
@@ -92,7 +92,7 @@ client.on("messageCreate", async (message) => {
     
         if (loopOption === "queue" || loopOption === "track" || loopOption === "none") {
             player.setLoop(loopOption);
-            message.channel.send(`Loop set to: ${loopOption}`);
+            message.channel.send(`Vòng lặp được đặt thành: ${loopOption}`);
         } else {
             message.channel.send("Tùy chọn vòng lặp không hợp lệ. Vui lòng chọn `hàng chờ`, `theo dõi` hoặc `none`.");
         }
@@ -113,7 +113,7 @@ client.on("messageCreate", async (message) => {
         message.reply({ embeds: [embed] });
     } else if (command === "resume") {
         const player = client.riffy.players.get(message.guild.id); 
-        if (!player) return message.channel.send("No player available.");
+        if (!player) return message.channel.send("Không có trình phát nào có sẵn.");
     
         player.pause(false);
 
@@ -159,7 +159,7 @@ client.on("messageCreate", async (message) => {
 
     } else if (command === "queue") {
         const player = client.riffy.players.get(message.guild.id); 
-        if (!player || player.queue.size === 0) return message.channel.send("The queue is currently empty.");
+        if (!player || player.queue.size === 0) return message.channel.send("Hàng đợi hiện đang trống.");
     
         const queueList = player.queue.map((track, index) => `${index + 1}. ${track.info.title}`).join("\n");
         const chunks = queueList.match(/(.|\n){1,1999}/g);
@@ -203,7 +203,7 @@ client.on("messageCreate", async (message) => {
           iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1236794583732457473/7828-verify-ak.gif?ex=6641dff7&is=66408e77&hm=e4d3f67ff76adbb3b7ee32fa57a24b7ae4c5acfe9380598e2f7e1a6c8ab6244c&',
           url: 'https://discord.gg/XBHZUwqAzK'
         })
-          .setDescription('**Let\'s change the rhythm with a random selection!**');
+          .setDescription('**Let\'s Thay đổi nhịp điệu với một lựa chọn ngẫu nhiên!**');
 
         message.reply({ embeds: [embed] });
     } else if (command === "stop") {
@@ -219,11 +219,11 @@ client.on("messageCreate", async (message) => {
           iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1230824519220985896/6280-2.gif?ex=6641e8a8&is=66409728&hm=149efc9db2a92eb90c70f0a6fb15618a5b912b528f6b1dcf1b517c77a72a733a&',
           url: 'https://discord.gg/XBHZUwqAzK'
         })
-          .setDescription('**Bringing the music to a halt...**');
+          .setDescription('**Tạm dừng âm nhạc...**');
         message.reply({ embeds: [embed] });
     } else if (command === "clear") {
         const player = client.riffy.players.get(message.guild.id); 
-        if (!player) return message.channel.send("No player available.");
+        if (!player) return message.channel.send("Hàng đợi hiện đang trống.");
         
         player.queue.clear();
 
@@ -234,7 +234,7 @@ client.on("messageCreate", async (message) => {
           iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1236802032938127470/4104-verify-yellow.gif?ex=6641e6e7&is=66409567&hm=25ecf140bc9c1f9492e9b7a0b573457fd498d744c28d56c5df663d7f84302083&',
           url: 'https://discord.gg/XBHZUwqAzK'
         })
-          .setDescription('**Starting afresh, clearing out the queue..**');
+          .setDescription('**Bắt đầu lại, xóa hàng đợi ..**');
         message.reply({ embeds: [embed] });
     }
 });
@@ -268,11 +268,11 @@ client.riffy.on("trackStart", async (player, track) => {
 
     fs.writeFileSync("musicard.png", musicard);
     const details = `**Title:** ${track.info.title}\n` +
-    `**Author:** ${track.info.author}\n` +
-    `**Seekable:** ${track.info.seekable}\n` +
-    `**Stream:** ${track.info.stream}\n` +
-    `**Requester:** ${track.info.requester}\n` +
-    `**Source Name:** ${track.info.sourceName}`;
+    `**Tác giả :** ${track.info.author}\n` +
+    `**Có thể tìm thấy :** ${track.info.seekable}\n` +
+    `**Dòng :** ${track.info.stream}\n` +
+    `**Người yêu cầu :** ${track.info.requester}\n` +
+    `**Nền Tảng :** ${track.info.sourceName}`;
 
     const musicEmbed = new EmbedBuilder()
         .setColor("#FF7A00")
